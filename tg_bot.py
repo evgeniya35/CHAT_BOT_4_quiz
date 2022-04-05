@@ -49,7 +49,7 @@ def handle_new_question_request(update: Update, context: CallbackContext) -> Non
     return CHOOSING
 
 
-def handle_surrenger(update: Update, context: CallbackContext) -> None:
+def handle_surrender(update: Update, context: CallbackContext) -> None:
     user = update.message.chat_id
     redis_session = context.bot_data['redis_session']
     question = redis_session.get(user)
@@ -129,7 +129,7 @@ def main():
             CHOOSING: [
                 MessageHandler(Filters.regex('^Новый вопрос$'),
                                handle_new_question_request),
-                MessageHandler(Filters.regex('^Сдаться$'), handle_surrenger),
+                MessageHandler(Filters.regex('^Сдаться$'), handle_surrender),
                 MessageHandler(Filters.regex('^Мой счёт$'), handle_score),
                 MessageHandler(Filters.regex('^Выйти$'), cancel),
                 MessageHandler(Filters.text & ~Filters.command,

@@ -1,4 +1,3 @@
-from email import message
 import logging
 import redis
 import vk_api
@@ -68,7 +67,7 @@ def handle_new_question_request(event, vk_bot, redis_session, questions_answers)
     )
 
 
-def handle_surrenger(event, vk_bot, redis_session, questions_answers):
+def handle_surrender(event, vk_bot, redis_session, questions_answers):
     user_id = event.user_id
     question = redis_session.get(user_id)
     answer = multi_split(['.', '('], questions_answers[question])[0]
@@ -127,7 +126,7 @@ def main():
                 handle_new_question_request(
                     event, vk, redis_session, questions_answers)
             elif 'Сдаться' in event.text:
-                handle_surrenger(event, vk, redis_session, questions_answers)
+                handle_surrender(event, vk, redis_session, questions_answers)
             elif 'Мой счёт' in event.text:
                 handle_score(event, vk, redis_session)
             elif 'Выйти' in event.text:
