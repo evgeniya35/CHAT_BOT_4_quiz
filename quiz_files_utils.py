@@ -21,5 +21,5 @@ def make_questions_answers(folder):
 
 
 def multi_split(delimiters, string, maxsplit=0):
-    regexPattern = '|'.join(map(re.escape, delimiters))
-    return re.split(regexPattern, string, maxsplit)
+    regex_pattern = '|'.join(map(re.escape, delimiters))
+    return re.split(regex_pattern, string, maxsplit)
